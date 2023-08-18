@@ -2,22 +2,22 @@
 vlsi.core.build_system: make
 # Genus options
 vlsi.core.synthesis_tool: "hammer.synthesis.genus"
-synthesis.genus.version: "211"
+synthesis.genus.version: "20.12.001"
 # Innovus options
 vlsi.core.par_tool: "hammer.par.innovus"
-par.innovus.version: "211"
+par.innovus.version: "18.10.000"
 par.innovus.design_flow_effort: "standard"
 par.inputs.gds_merge: true
 # Calibre options
 vlsi.core.drc_tool: "hammer.drc.calibre"
-drc.calibre.version: "2022.2_24.16"
+drc.calibre.version: "2019.3_25.15"
 vlsi.core.lvs_tool: "hammer.lvs.calibre"
-lvs.calibre.version: "2022.2_24.16"
+lvs.calibre.version: "2019.3_25.15"
 # VCS options
 vlsi.core.sim_tool: "hammer.sim.vcs"
-sim.vcs.version: "S-2021.09-SP1-1"
+sim.vcs.version: "O-2018.09-SP2"
 # Voltus options
-vlsi.core.power_tool: "hammer.power.voltus"
-power.joules.version: "211"
-power.voltus.version: "211_ISR3"
+# vlsi.core.power_tool: "hammer.power.voltus"
+# power.joules.version: "211"
+# power.voltus.version: "211_ISR3"
 # NOTE (about VCS+Voltus versions): if using FSDB, the VCS version should be approx 2 years older than the Voltus version for compatibility
