@@ -1,10 +1,13 @@
 # Tool options. Replace with your tool plugin of choice.
 vlsi.core.build_system: make
+# license file
 # Genus options
 vlsi.core.synthesis_tool: "hammer.synthesis.genus"
+synthesis.genus.genus_bin: "/opt/cadence/GENUS20.12.001/bin/genus"
 synthesis.genus.version: "20.12.001"
 # Innovus options
 vlsi.core.par_tool: "hammer.par.innovus"
+par.innovus.innovus_bin: "/opt/cadence/innovus/bin/innovus"
 par.innovus.version: "18.10.000"
 par.innovus.design_flow_effort: "standard"
 par.inputs.gds_merge: true
@@ -16,6 +19,10 @@ lvs.calibre.version: "2019.3_25.15"
 # VCS options
 vlsi.core.sim_tool: "hammer.sim.vcs"
 sim.vcs.version: "O-2018.09-SP2"
+sim.vcs.vcs_home: "/opt/synopsys/vcs/O-2018.09-SP2"
+sim.vcs.vcs_bin: "/opt/synopsys/vcs/O-2018.09-SP2/bin/vcs"
+sim.vcs.verdi_home: "/opt/synopsys/verdi/Verdi_O-2018.09-SP2"
+sim.vcs.verdi_bin: "/opt/synopsys/verdi/Verdi_O-2018.09-SP2/bin/verdi"
 # Voltus options
 # vlsi.core.power_tool: "hammer.power.voltus"
 # power.joules.version: "211"
