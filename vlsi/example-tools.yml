@@ -2,22 +2,17 @@
 vlsi.core.build_system: make
 # Genus options
 vlsi.core.synthesis_tool: "hammer.synthesis.genus"
-synthesis.genus.version: "211"
+synthesis.genus.genus_bin: "/opt/cadence/GENUS20.12.001/bin/genus"
 # Innovus options
 vlsi.core.par_tool: "hammer.par.innovus"
-par.innovus.version: "211"
 par.innovus.design_flow_effort: "standard"
 par.inputs.gds_merge: true
-# Calibre options
-vlsi.core.drc_tool: "hammer.drc.calibre"
-drc.calibre.version: "2022.2_24.16"
-vlsi.core.lvs_tool: "hammer.lvs.calibre"
-lvs.calibre.version: "2022.2_24.16"
-# VCS options
+par.innovus.innovus_bin: "/opt/cadence/INNOVUS/bin/innovus"
+# VCS & Verdi options
 vlsi.core.sim_tool: "hammer.sim.vcs"
-sim.vcs.version: "S-2021.09-SP1-1"
+sim.vcs.vcs_bin: "/opt/synopsys/vcs/Q-2020.03-SP2-7/bin/vcs"
+sim.vcs.vcs_home: "/opt/synopsys/vcs/Q-2020.03-SP2-7"
+sim.verdi.verdi_home: "/opt/synopsys/verdi/R-2020.12-SP1"
 # Voltus options
 vlsi.core.power_tool: "hammer.power.voltus"
-power.joules.version: "211"
-power.voltus.version: "211_ISR3"
-# NOTE (about VCS+Voltus versions): if using FSDB, the VCS version should be approx 2 years older than the Voltus version for compatibility
+power.joules.joules_bin: "/opt/cadence/JLS20.12.000/bin/joules"
