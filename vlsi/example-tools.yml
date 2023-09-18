@@ -23,8 +23,8 @@ sim.vcs.vcs_home: "/opt/synopsys/vcs/O-2018.09-SP2"
 sim.vcs.vcs_bin: "/opt/synopsys/vcs/O-2018.09-SP2/bin/vcs"
 sim.vcs.verdi_home: "/opt/synopsys/verdi/Verdi_O-2018.09-SP2"
 sim.vcs.verdi_bin: "/opt/synopsys/verdi/Verdi_O-2018.09-SP2/bin/verdi"
-# Voltus options
-# vlsi.core.power_tool: "hammer.power.voltus"
-# power.joules.version: "211"
-# power.voltus.version: "211_ISR3"
+# Joules options
+vlsi.core.power_tool: "hammer.power.joules"
+power.joules.joules_bin: "/opt/cadence/JLS20.12.000/bin/joules"
+power.joules.version: "000"
 # NOTE (about VCS+Voltus versions): if using FSDB, the VCS version should be approx 2 years older than the Voltus version for compatibility

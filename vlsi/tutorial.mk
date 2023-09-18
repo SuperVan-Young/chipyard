@@ -7,7 +7,7 @@ EXTRA_CONFS ?=
 # TODO: eventually have asap7 commercial/openroad tutorial flavors
 ifeq ($(tutorial),asap7)
     tech_name         ?= asap7
-    CONFIG            ?= TinyRocketConfig
+    CONFIG            ?= SmallBoomConfig
     TOOLS_CONF        ?= example-tools.yml
     TECH_CONF         ?= example-asap7.yml
     DESIGN_CONFS      ?=
