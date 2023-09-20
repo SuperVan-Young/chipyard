@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/root/chipyard/.conda-env/bin/python
 #
 # NOTE: this ExampleDriver works for asap7 and nangate45. the custom hooks are
 # only used for asap7 though.
