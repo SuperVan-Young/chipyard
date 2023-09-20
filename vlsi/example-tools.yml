@@ -1,5 +1,6 @@
 # Tool options. Replace with your tool plugin of choice.
 vlsi.core.build_system: make
+# license file
 # Genus options
 vlsi.core.synthesis_tool: "hammer.synthesis.genus"
 synthesis.genus.genus_bin: "/opt/cadence/GENUS20.12.001/bin/genus"

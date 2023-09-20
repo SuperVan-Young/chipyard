@@ -14,6 +14,15 @@ ifeq ($(tutorial),asap7)
     VLSI_OBJ_DIR      ?= build-asap7-commercial
 endif
 
+ifeq ($(tutorial),asap7-boom)
+    tech_name         ?= asap7
+    CONFIG            ?= SmallBoomConfig
+    TOOLS_CONF        ?= example-tools.yml
+    TECH_CONF         ?= example-asap7.yml
+    DESIGN_CONFS      ?=
+    VLSI_OBJ_DIR      ?= build-asap7-commercial
+endif
+
 ifeq ($(tutorial),sky130-commercial)
     tech_name         ?= sky130
     CONFIG            ?= TinyRocketConfig

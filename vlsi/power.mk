@@ -11,7 +11,7 @@ $(POWER_CONF): $(VLSI_RTL) check-binary
 	echo "power.inputs:" > $@
 	echo "  top_module: $(VLSI_TOP)" >> $@
 	echo "  tb_name: TestDriver" >> $@
-	echo "  tb_dut: 'testHarness/$(VLSI_MODEL_DUT_NAME)'" >> $@
+	echo "  tb_dut: 'testHarness/$(VLSI_MODEL_DUT_NAME)0'" >> $@
 ifneq ($(BINARY), )
 	echo "  waveforms: [" >> $@
 ifndef USE_VPD
