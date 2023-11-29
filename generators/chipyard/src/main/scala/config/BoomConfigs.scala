@@ -68,3 +68,6 @@ class dmiMediumBoomCosimConfig extends Config(
   new boom.common.WithNMediumBooms(1) ++
   new chipyard.config.AbstractConfig)
 
+class N0BoomConfig extends Config(
+  new boom.common.WithN0Booms(1) ++                              // small boom config
+  new chipyard.config.AbstractConfig)

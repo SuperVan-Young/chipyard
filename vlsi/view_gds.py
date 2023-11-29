@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/root/chipyard/.conda-env/bin/python
 
 import sys, os, subprocess
 

@@ -1,0 +1,103 @@
+[10/12 22:11:21      0s] 
+[10/12 22:11:21      0s] Cadence Innovus(TM) Implementation System.
+[10/12 22:11:21      0s] Copyright 2021 Cadence Design Systems, Inc. All rights reserved worldwide.
+[10/12 22:11:21      0s] 
+[10/12 22:11:21      0s] Version:	v21.10-p004_1, built Tue May 18 11:58:29 PDT 2021
+[10/12 22:11:21      0s] Options:	-h 
+[10/12 22:11:21      0s] Date:		Thu Oct 12 22:11:21 2023
+[10/12 22:11:21      0s] Host:		qingteng (x86_64 w/Linux 3.10.0-1160.76.1.el7.x86_64) (2cores*4cpus*13th Gen Intel(R) Core(TM) i7-13700K 30720KB)
+[10/12 22:11:21      0s] OS:		CentOS Linux release 7.9.2009 (Core)
+[10/12 22:11:21      0s] 
+[10/12 22:11:21      0s] License:
+[10/12 22:11:21      0s] 		invs	Innovus Implementation System	21.1	checkout succeeded
+[10/12 22:11:21      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[10/12 22:11:22      0s] **WARN: (IMPSYT-1507):	The display is invalid and will start in no window mode
+[10/12 22:11:25      6s] **ERROR: (IMPSYT-468):	Unknown argument -h
+[10/12 22:11:25      6s] Usage: innovus
+[10/12 22:11:25      6s]  	[-abort_on_error]
+[10/12 22:11:25      6s]  	[-batch]
+[10/12 22:11:25      6s]  	[-cds_lib_file <in_file>]
+[10/12 22:11:25      6s]  	[-stylus]
+[10/12 22:11:25      6s]  	[-cpus <integer>]
+[10/12 22:11:25      6s]  	[-disable_user_startup]
+[10/12 22:11:25      6s]  	[-execute <Tcl_commands>]
+[10/12 22:11:25      6s]  	[-files <in_file_list>]
+[10/12 22:11:25      6s]  	[-help]
+[10/12 22:11:25      6s]  	[-lic_multi_cpu <lic_list>]
+[10/12 22:11:25      6s]  	[-lic_options <lic_list>]
+[10/12 22:11:25      6s]  	[-lic_startup <lic_list>]
+[10/12 22:11:25      6s]  	[-lic_startup_options <lic_list>]
+[10/12 22:11:25      6s]  	[-lic_stack <integer>]
+[10/12 22:11:25      6s]  	[-log <prefix>]
+[10/12 22:11:25      6s]  	[-no_gui]
+[10/12 22:11:25      6s]  	[-no_logv]
+[10/12 22:11:25      6s]  	[-no_cmd]
+[10/12 22:11:25      6s]  	[-overwrite]
+[10/12 22:11:25      6s]  	[-version]
+[10/12 22:11:25      6s]  	[-wait <minutes>]
+[10/12 22:11:25      6s] 
+[10/12 22:11:25      6s] Usage: innovus [options]
+[10/12 22:11:25      6s] [-abort_on_error]
+[10/12 22:11:25      6s] 	Exit if an error is detected at any point.
+[10/12 22:11:25      6s] [-batch]
+[10/12 22:11:25      6s] 	No interactive prompt occurs. Exit after -execute and -files options
+[10/12 22:11:25      6s] 	are processed.
+[10/12 22:11:25      6s] [-cds_lib_file <in_file>]
+[10/12 22:11:25      6s] 	Load in_file rather than the default cds.lib file in the current
+[10/12 22:11:25      6s] 	directory to obtain the names and locations of OpenAccess libraries.
+[10/12 22:11:25      6s] [-stylus]
+[10/12 22:11:25      6s] 	Enable Common UI, Stylus flow kit, and Stylus metrics.
+[10/12 22:11:25      6s] [-cpus <integer>]
+[10/12 22:11:25      6s] 	Number of cpus to use for multi-threading on current host.
+[10/12 22:11:25      6s] [-disable_user_startup]
+[10/12 22:11:25      6s] 	Only read the init file in the installation hierarchy. Do not read
+[10/12 22:11:25      6s] 	init files in the home or current directory.
+[10/12 22:11:25      6s] [-execute <Tcl_commands>]
+[10/12 22:11:25      6s] 	Tcl commands to execute at startup, before -files.
+[10/12 22:11:25      6s] [-files <in_file_list>]
+[10/12 22:11:25      6s] 	One or more Tcl files to source at startup, after -execute. Set shell envar CDS_STYLUS_SOURCE_VERBOSE to 0 if you don't want the source command output to default to verbose in Stylus.
+[10/12 22:11:25      6s] [-help]
+[10/12 22:11:25      6s] 	Write out the usage and options with brief descriptions.
+[10/12 22:11:25      6s] [-lic_multi_cpu <lic_list>]
+[10/12 22:11:25      6s] 	Control which licenses to use for higher multi-cpu usage in priority
+[10/12 22:11:25      6s] 	order from left to right. The allowed license names are:
+[10/12 22:11:25      6s] 	"invs_cpu invs invsb fel fexl invs_dcpu"
+[10/12 22:11:25      6s] [-lic_options <lic_list>]
+[10/12 22:11:25      6s] 	Ordered list for dynamic option license checkout in priority order
+[10/12 22:11:25      6s] 	from left to right. These are checked out when needed by a specific
+[10/12 22:11:25      6s] 	Tcl command. Legal names are:
+[10/12 22:11:25      6s] 	"invs_hier invs_ms invs_3d_ic invs_5nm invs_3nm invs_7nm invs_20nm invs_10nm invs_i20nm invs_i10nm
+[10/12 22:11:25      6s] 	 invs_hfr invs_gigaplace invs_gigaplace_gxl qrcaa enclp encan enccco encng vdixl_capacity
+[10/12 22:11:25      6s] 	 invs_pi invs_ml invs_ehfs invs_dfm invs_sc invs_automotive
+[10/12 22:11:25      6s] 	 tpsxl tpsl vtsxl vtsl vtsxm vtsesd vtsaa"
+[10/12 22:11:25      6s] [-lic_startup <lic_list>]
+[10/12 22:11:25      6s] 	Request one of these licenses at startup in priority order from left
+[10/12 22:11:25      6s] 	to right. The supported licenses are:
+[10/12 22:11:25      6s] 	"invs invsb fexl vdixl vdi fel"
+[10/12 22:11:25      6s] [-lic_startup_options <lic_list>]
+[10/12 22:11:25      6s] 	Additional option licenses needed at startup. The allowed license names are:
+[10/12 22:11:25      6s] 	"invs_hier invs_ms invs_3d_ic invs_5nm invs_3nm invs_7nm invs_20nm invs_10nm invs_i20nm invs_i10nm
+[10/12 22:11:25      6s] 	 invs_hfr invs_gigaplace invs_gigaplace_gxl qrcaa enclp encan enccco encng vdixl_capacity
+[10/12 22:11:25      6s] 	 invs_pi invs_ml invs_ehfs invs_dfm invs_sc invs_automotive
+[10/12 22:11:25      6s] 	 tpsxl tpsl vtsxl vtsl vtsxm vtsesd vtsaa"
+[10/12 22:11:25      6s] [-lic_stack <integer>]
+[10/12 22:11:25      6s] 	Number of licenses to stack for stackable licenses.
+[10/12 22:11:25      6s] [-log <prefix>]
+[10/12 22:11:25      6s] 	Prefix for the .log, .cmd, and .logv files. If 3 args are given like
+[10/12 22:11:25      6s] 	-log "a b c" then the 3 names are used without any extension added.
+[10/12 22:11:25      6s] 	If the .log file already exists, an integer is appended to all the
+[10/12 22:11:25      6s] 	names to make the files unique.
+[10/12 22:11:25      6s] [-no_gui]
+[10/12 22:11:25      6s] 	Disable GUI and Tk support. GUI will not be available later in the
+[10/12 22:11:25      6s] 	session.
+[10/12 22:11:25      6s] [-no_logv]
+[10/12 22:11:25      6s] 	Specifies that verbose log file will not be created.
+[10/12 22:11:25      6s] [-no_cmd]
+[10/12 22:11:25      6s] 	Specifies that verbose command file will not be created.
+[10/12 22:11:25      6s] [-overwrite]
+[10/12 22:11:25      6s] 	Overwrite an existing .log file (and associated .cmd, .logv files)
+[10/12 22:11:25      6s] 	instead of adding an integer to make the files unique.
+[10/12 22:11:25      6s] [-version]
+[10/12 22:11:25      6s] 	Return program version information.
+[10/12 22:11:25      6s] [-wait <minutes>]
+[10/12 22:11:25      6s] 	Number of minutes to wait for licenses before exiting. The default is 0.

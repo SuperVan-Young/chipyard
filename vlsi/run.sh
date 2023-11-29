@@ -40,19 +40,19 @@ for benchmark_riscv in "${BENCHMARK_RISCVS[@]}"; do
     make redo-sim-rtl-debug tutorial=$tutorial BINARY=$benchmark_riscv &
     wait $!
 
-    # setup redo
-    if [ -d "$POWER_RTL_RUNDIR" ]; then
-        rm -r $POWER_RTL_RUNDIR
-    fi
-    power_sim_rtl_input_json="$CHIPTOP_BUILD_DIR/power-sim-rtl-input.json"
-    if [ -f "$power_sim_rtl_input_json" ]; then
-        rm $power_sim_rtl_input_json
-    fi
-    # run power-rtl
-    echo "Running power-rtl with benchmark $benchmark_riscv"
-    make power-rtl tutorial=$tutorial BINARY=$benchmark_riscv &
-    wait $!
-    cp "$POWER_RTL_RUNDIR/waveforms.report" "$POWER_REPORT_DIR/$benchmark_name.report"
+    # # setup redo
+    # if [ -d "$POWER_RTL_RUNDIR" ]; then
+    #     rm -r $POWER_RTL_RUNDIR
+    # fi
+    # power_sim_rtl_input_json="$CHIPTOP_BUILD_DIR/power-sim-rtl-input.json"
+    # if [ -f "$power_sim_rtl_input_json" ]; then
+    #     rm $power_sim_rtl_input_json
+    # fi
+    # # run power-rtl
+    # echo "Running power-rtl with benchmark $benchmark_riscv"
+    # make power-rtl tutorial=$tutorial BINARY=$benchmark_riscv &
+    # wait $!
+    # cp "$POWER_RTL_RUNDIR/waveforms.report" "$POWER_REPORT_DIR/$benchmark_name.report"
 
 done
 

@@ -16,7 +16,7 @@ endif
 
 ifeq ($(tutorial),asap7-boom)
     tech_name         ?= asap7
-    CONFIG            ?= SmallBoomConfig
+    CONFIG            ?= N0BoomConfig
     TOOLS_CONF        ?= example-tools.yml
     TECH_CONF         ?= example-asap7.yml
     DESIGN_CONFS      ?=
