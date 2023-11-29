@@ -5,6 +5,14 @@ from collections import OrderedDict
 from typing import Dict, Optional, NoReturn, Union
 from utils import info, if_exist, mkdir, remove, load_excel
 import random
+import argparse
+
+
+parser = argparse.ArgumentParser(description='BOOM config生成示例脚本')
+parser.add_argument('--id', type=int, default=1, help='config对应的id')
+
+# parse the arguments
+args = parser.parse_args()
 
 
 class BOOMMacros():
@@ -46,14 +54,46 @@ class BOOMDesignSpace(BOOMMacros):
         """
         self.design_space = design_space
         self.size, self.component_dims = self.construct_design_space_size()
-        # print(self.idx_to_vec(12345), self.vec_to_idx(self.idx_to_vec(12345)))
-        rnd = 1# random.randint(0, self.size - 1)
-        print(rnd)
-        vec = self.idx_to_vec(rnd)
-        
-        print(self.vec_is_valid(vec))
-        
-        print(self.generate_core_cfg_impl("WithN0Booms", vec))
+
+        print("config id is: ", args.id)
+        vec = self.idx_to_vec(args.id)
+        config_is_valid = self.vec_is_valid(vec)
+        print(f"{args.id}th config is valid: ", config_is_valid)
+        core_cfg_impl_str = self.generate_core_cfg_impl(f"WithN{args.id}Booms", vec)
+
+        print(core_cfg_impl_str)
+
+        # if the config is valid, append it to generators/boom/src/main/scala/common/config-mixins.scala
+        if config_is_valid:
+            boom_cfg = f"\n\nclass N{args.id}BoomConfig extends Config(\n" \
+                       f"  new boom.common.WithN{args.id}Booms(1) ++\n"  \
+                        "  new chipyard.config.AbstractConfig)\n"
+
+            core_cfg = "\n\n" + core_cfg_impl_str
+
+            with open("../generators/boom/src/main/scala/common/config-mixins.scala", "r") as f:
+                duplicated = False
+                lines = f.readlines()
+                for line in lines:
+                    if f"WithN{args.id}Booms" in line:
+                        duplicated = True
+                        break
+
+            with open("../generators/boom/src/main/scala/common/config-mixins.scala", "a") as f:
+                if not duplicated:
+                    f.write(core_cfg)
+
+            with open("../generators/chipyard/src/main/scala/config/BoomConfigs.scala", "r") as f:
+                duplicated = False
+                lines = f.readlines()
+                for line in lines:
+                    if f"N{args.id}BoomConfig" in line:
+                        duplicated = True
+                        break
+
+            with open("../generators/chipyard/src/main/scala/config/BoomConfigs.scala", "a") as f:
+                if not duplicated:
+                    f.write(boom_cfg)
         
     def vec_to_dict(self, vec):
         dic = {}
@@ -338,14 +378,18 @@ class %s extends Config(
             f.writelines(codes)
 
 def parse_boom_design_space():
-    sheet = load_excel("/home/yiqi/boom-explorer-public/configs/boom-design-space/design-space.xlsx", sheet_name="BOOM Design Space")
+    sheet = load_excel("design-space.xlsx", sheet_name="BOOM Design Space")
     design_space = OrderedDict()
     for row in sheet.values:
         design_space[row[1]] = []
         for val in row[-1].split(','):
             design_space[row[1]].append(int(val))
             
-    print(design_space)
+    # print(design_space)
     return BOOMDesignSpace(design_space)
 
-parse_boom_design_space()
+
+
+
+if __name__ == '__main__':
+    parse_boom_design_space()
