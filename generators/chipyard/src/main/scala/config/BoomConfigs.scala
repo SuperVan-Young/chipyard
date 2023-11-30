@@ -82,3 +82,18 @@ class N123BoomConfig extends Config(
 class N1BoomConfig extends Config(
   new boom.common.WithN1Booms(1) ++
   new chipyard.config.AbstractConfig)
+
+
+class N987BoomConfig extends Config(
+  new boom.common.WithN987Booms(1) ++
+  new chipyard.config.AbstractConfig)
+
+
+class N999BoomConfig extends Config(
+  new boom.common.WithN999Booms(1) ++
+  new chipyard.config.AbstractConfig)
+
+
+class N9992BoomConfig extends Config(
+  new boom.common.WithN9992Booms(1) ++
+  new chipyard.config.AbstractConfig)
