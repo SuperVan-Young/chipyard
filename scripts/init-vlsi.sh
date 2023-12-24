@@ -11,10 +11,10 @@ if [[ `basename $CONDA_PREFIX` != .conda-env ]]; then
 fi
 
 # Initialize HAMMER CAD-plugins
-if [[ $1 != *openroad* ]] && [[ $2 != *openroad* ]]; then
-    git submodule update --init --recursive vlsi/hammer-mentor-plugins
-    pip install -e vlsi/hammer-mentor-plugins
-fi
+# if [[ $1 != *openroad* ]] && [[ $2 != *openroad* ]]; then
+#     git submodule update --init --recursive vlsi/hammer-mentor-plugins
+#     pip install -e vlsi/hammer-mentor-plugins
+# fi
 
 # Initialize HAMMER tech plugin
 # And add tech plugin to conda dependencies
