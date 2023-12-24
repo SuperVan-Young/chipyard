@@ -7,7 +7,8 @@ technology.asap7.tarball_dir: "/home/chenhao.xue/asap7"
 technology.asap7.pdk_install_dir: "/home/chenhao.xue/asap7/asap7_pdk_r1p7"
 technology.asap7.stdcell_install_dir: "/home/chenhao.xue/asap7/asap7sc7p5t_27"
 
-vlsi.core.max_threads: 12
+# vlsi.core.max_threads: 12
+vlsi.core.max_threads: 48
 
 # General Hammer Inputs
 
