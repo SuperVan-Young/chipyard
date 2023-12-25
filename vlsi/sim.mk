@@ -10,7 +10,7 @@ $(SIM_CONF): $(sim_common_files) check-binary
 	echo "  top_module: $(VLSI_TOP)" >> $@
 	echo "  tb_name: ''" >> $@  # don't specify -top
 	echo "  input_files:" >> $@
-	for x in $$(cat $(MODEL_MODS_FILELIST) | sort -u) $(MODEL_SMEMS_FILE) $(SIM_FILE_REQS); do \
+	for x in $$(comm -23 <(cat $(MODEL_MODS_FILELIST) $(MODEL_BB_MODS_FILELIST) | sort -u) <(sort $(VLSI_RTL))) $(MODEL_SMEMS_FILE) $(SIM_FILE_REQS); do \
 		echo '    - "'$$x'"' >> $@; \
 	done
 	echo "  input_files_meta: 'append'" >> $@
@@ -49,7 +49,7 @@ endif
 ifneq ($(BINARY), )
 	echo "  benchmarks: ['$(BINARY)']" >> $@
 endif
-	echo "  tb_dut: 'TestDriver.testHarness.$(VLSI_MODEL_DUT_NAME)'" >> $@
+	echo "  tb_dut: 'TestDriver.testHarness.$(VLSI_MODEL_DUT_NAME)0'" >> $@
 
 $(SIM_DEBUG_CONF): $(sim_common_files) check-binary
 	mkdir -p $(dir $@)
@@ -73,6 +73,16 @@ ifndef USE_VPD
 else
 	echo "sim.outputs.waveforms: ['$(call get_sim_out_name,$(BINARY)).vpd']" >> $@
 endif
+	@if [ "$(IS_GL_SIM)" = "false" ]; then \
+	for x in $$(cat $(sim_common_files)); do \
+	        echo '    - "'$$x'"' >> $@; \
+	done; \
+	fi
+	@if [ "$(IS_GL_SIM)" = "true" ]; then \
+	for x in $$(cat $(sim_common_files) | grep -v ChipTop.sv); do \
+	        echo '    - "'$$x'"' >> $@; \
+	done; \
+	fi
 
 $(SIM_TIMING_CONF): $(sim_common_files)
 	mkdir -p $(dir $@)

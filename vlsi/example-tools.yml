@@ -18,10 +18,13 @@ lvs.calibre.version: "2022.2_24.16"
 # VCS options
 vlsi.core.sim_tool: "hammer.sim.vcs"
 # sim.vcs.version: "S-2021.09-SP1-1"
+sim.vcs.vcs_home: "/soft/synopsys/vcs/vcs_vS-2021.09-SP2"
 sim.vcs.vcs_bin: "/soft/synopsys/vcs/vcs_vS-2021.09-SP2/bin/vcs"
+sim.vcs.verdi_home: "/soft/synopsys/verdi/R-2020.12-SP1-1"
 sim.vcs.verdi_bin: "/soft/synopsys/verdi/R-2020.12-SP1-1/bin/verdi"
 # Voltus options
 vlsi.core.power_tool: "hammer.power.voltus"
-power.joules.version: "211"
-power.voltus.version: "211_ISR3"
+# power.joules.version: "211"
+# power.voltus.version: "211_ISR3"
+power.joules.joules_bin: "/soft/cadence/jls/20.11/bin/joules"
 # NOTE (about VCS+Voltus versions): if using FSDB, the VCS version should be approx 2 years older than the Voltus version for compatibility
