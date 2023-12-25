@@ -24,6 +24,10 @@ $(SIM_CONF): $(sim_common_files) check-binary
 	for x in $(subst +define+,,$(SIM_PREPROC_DEFINES)); do \
 		echo '    - "'$$x'"' >> $@; \
 	done
+# This compiler flag is for VCS
+ifndef USE_VPD
+	echo '    - "FSDB=1"' >> $@;
+endif
 	echo "  defines_meta: 'append'" >> $@
 	echo "  compiler_cc_opts:" >> $@
 	for x in $(filter-out "",$(VCS_CXXFLAGS)); do \
