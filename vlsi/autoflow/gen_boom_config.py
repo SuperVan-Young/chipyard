@@ -92,6 +92,32 @@ class BOOMDesignSpace(BOOMMacros):
         dic["DCacheTLB"]=               vec[18]
     
         return dic
+    
+    def dict_to_vec(self, dic):
+        vec = range(19)
+
+        vec[0] = dic["FetchWidth"]
+        vec[1] = dic["FetchBufferEntry"]
+        vec[2] = dic["RasEntry"]
+        vec[3] = dic["BranchCount"]
+        vec[4] = dic["ICacheWay"]
+        vec[5] = dic["ICacheTLB"]
+        vec[6] = dic["ICacheFetchBytes"]
+        vec[7] = dic["DecodeWidth"]
+        vec[8] = dic["RobEntry"]
+        vec[9] = dic["IntPhyRegister"]
+        vec[10] = dic["FpPhyRegister"]
+        vec[11] = dic["MemIssueWidth"]
+        vec[12] = dic["IntIssueWidth"]
+        vec[13] = dic["FpIssueWidth"]
+        vec[14] = dic["LDQEntry"]
+        vec[15] = dic["STQEntry"]
+        vec[16] = dic["DCacheWay"]
+        vec[17] = dic["DCacheMSHR"]
+        vec[18] = dic["DCacheTLB"]
+
+        return vec
+
         
     def vec_is_valid(self, vec):
         dic = self.vec_to_dict(vec)
@@ -362,9 +388,10 @@ def parse_boom_design_space():
     # print(design_space)
     return BOOMDesignSpace(design_space)
 
-design_space = parse_boom_design_space()
-idx = design_space.gen_random_idx(seed=int(time.time()))
-design_space.generate_chisel_codes([idx])
+if __name__ == "__main__":
+    design_space = parse_boom_design_space()
+    idx = design_space.gen_random_idx(seed=int(time.time()))
+    design_space.generate_chisel_codes([idx])
 
-# This should be the only thing to print
-print(idx)
+    # This should be the only thing to print
+    print(idx)

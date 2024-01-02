@@ -38,18 +38,19 @@ class LogParser():
                     return total_area
         raise ValueError(f'No valid area result for')
 
-
-def get_area(report_path):
-    with open(report_path, 'r') as f:
-        for line in f.readlines():
-            if 'BoomTile' in line:
-                total_area = float(line.strip().split(' ')[-1])
-                return total_area
-    raise ValueError(f'No valid area result for')
+# legacy for analyzing synthesized results
 
 def parse_all_area():
     boom_vec_list = []
     area_list = []
+
+    def get_area(report_path):
+        with open(report_path, 'r') as f:
+            for line in f.readlines():
+                if 'BoomTile' in line:
+                    total_area = float(line.strip().split(' ')[-1])
+                    return total_area
+        raise ValueError(f'No valid area result for')
 
     for build_dir in os.listdir(os.path.join(CHIPYARD_ROOT, 'vlsi/build')):
         if 'chipyard.harness.TestHarness.Boom' not in build_dir:
@@ -99,6 +100,6 @@ def analyze_correlation(vec_list, res_list):
 
     return correlations, max_index
 
-
-boom_vec_list, area_list = parse_all_area()
-analyze_correlation(np.transpose(boom_vec_list).tolist(), area_list)
+if __name__ == '__main__':
+    boom_vec_list, area_list = parse_all_area()
+    analyze_correlation(np.transpose(boom_vec_list).tolist(), area_list)
