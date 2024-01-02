@@ -94,7 +94,7 @@ class BOOMDesignSpace(BOOMMacros):
         return dic
     
     def dict_to_vec(self, dic):
-        vec = range(19)
+        vec = list(range(19))
 
         vec[0] = dic["FetchWidth"]
         vec[1] = dic["FetchBufferEntry"]

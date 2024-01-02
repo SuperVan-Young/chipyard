@@ -14,7 +14,6 @@ BOOM_CFG_IDX=$1
 BOOM_CFG_NAME="Boom${BOOM_CFG_IDX}Config"
 
 echo $BOOM_CFG_NAME
-exit 1
 
 make buildfile CONFIG=$BOOM_CFG_NAME
 make redo-syn CONFIG=$BOOM_CFG_NAME
