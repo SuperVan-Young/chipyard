@@ -17,16 +17,18 @@ class LogParser():
                 if 'End of simulation at' in line:
                     perf = int(line.split('End of simulation at')[1])
                     return perf
-        raise ValueError(f'No valid performance result for {benchmark_name}')
+        # raise ValueError(f'No valid performance result for {benchmark_name}')
+        return np.inf
 
     def get_power(self):
         report_path = os.path.join(CHIPYARD_ROOT, f'vlsi/build/chipyard.harness.TestHarness.{self.config_name}-ChipTop/power-rtl-rundir/waveforms.report')
         with open(report_path, 'r') as f:
             for line in f.readlines():
                 if 'Subtotal' in line:
-                    total_power = line.strip().split(' ')[-2]
+                    total_power = float(line.strip().split(' ')[-2])
                     return total_power
-        raise ValueError(f'No valid area result for')
+        # raise ValueError(f'No valid area result for')
+        return np.inf
 
 
     def get_area(self):
@@ -36,7 +38,8 @@ class LogParser():
                 if 'BoomTile' in line:
                     total_area = float(line.strip().split(' ')[-1])
                     return total_area
-        raise ValueError(f'No valid area result for')
+        return np.inf
+        # raise ValueError(f'No valid area result for')
 
 # legacy for analyzing synthesized results
 

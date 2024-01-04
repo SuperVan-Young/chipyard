@@ -2,7 +2,7 @@
 
 # Generate Make include to aid in flow
 vlsi.core.build_system: make
-vlsi.core.max_threads: 48
+vlsi.core.max_threads: 12
 
 # Hammer will auto-generate a CPF for simple power designs; see hammer/src/hammer-vlsi/defaults.yml for more info
 vlsi.inputs.power_spec_mode: "auto"

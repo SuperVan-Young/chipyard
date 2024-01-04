@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import random
 import openbox
 import subprocess
-from openbox import Optimizer, space as sp
+import fcntl
+from openbox import Optimizer, ParallelOptimizer, space as sp
 from gen_boom_config import parse_boom_design_space
 from parse_log import LogParser
 
@@ -37,6 +38,29 @@ def run_subprocess(cmd):
     else:
         raise RuntimeError(f"Failure in running subprocess {cmd}, return code", result.returncode)
 
+
+def generate_chisel_code(idx):
+    """Check if config index is unique, synchronize with a file
+    """
+    UNIQUE_IDX_FILE = "./unique_idx.txt"
+    if not os.path.exists(UNIQUE_IDX_FILE):
+        os.system(f'touch {UNIQUE_IDX_FILE}')
+
+    with open(UNIQUE_IDX_FILE, 'r+') as file:
+        # lock the file atomically
+        fcntl.flock(file.fileno(), fcntl.LOCK_SH)
+
+        history_idx_list = [int(line.strip()) for line in file.readlines()]
+        if idx not in history_idx_list:
+            history_idx_list.append(idx)
+            file.seek(0, os.SEEK_END)
+            file.write(f"{idx}\n")
+
+        fcntl.flock(file.fileno(), fcntl.LOCK_UN)
+
+    boom_design_space.generate_chisel_codes(history_idx_list)
+
+
 # Define Objective Function
 def get_ppa(config):
     """Run vlsi flow and get results"""
@@ -46,9 +70,8 @@ def get_ppa(config):
     openbox.logger.info(config)
 
     # generate configuration file before running the flow
-    boom_design_space.generate_chisel_codes([idx])
+    generate_chisel_code(idx)
 
-    # os.system(f"bash ./scripts/vlsi_flow.sh {idx}")
     cmd = f"bash ./scripts/vlsi_flow.sh {idx}"
     run_subprocess(cmd)
     
@@ -87,22 +110,38 @@ if __name__ == "__main__":
 
     space = define_openbox_space()
 
-    opt = Optimizer(
+    # opt = Optimizer(
+    #     get_ppa,
+    #     space,
+    #     num_objectives=3,
+    #     num_constraints=0,
+    #     max_runs=50,
+    #     surrogate_type='gp',
+    #     acq_type='ehvi',
+    #     acq_optimizer_type='random_scipy',
+    #     task_id='BOOM Explorer',
+    #     ref_point=(15000000000, 50, 5000000),
+    #     random_state=1,
+    # )
+
+    opt = ParallelOptimizer(
         get_ppa,
         space,
+        parallel_strategy='async',
+        batch_size=4,
+        batch_strategy='default',
         num_objectives=3,
         num_constraints=0,
-        max_runs=50,
+        max_runs=100,
         surrogate_type='gp',
         acq_type='ehvi',
         acq_optimizer_type='random_scipy',
         task_id='BOOM Explorer',
-        ref_point=(500000, 0.10, 5000000),
+        ref_point=(15000000000, 50, 5000000),
         random_state=1,
     )
+
     history = opt.run()
 
-    print(history)
-
-    history.plot_convergence(true_minimum=0.397887)
+    history.plot_convergence()
     plt.show()

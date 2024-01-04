@@ -6,6 +6,7 @@ from typing import Dict, Optional, NoReturn, Union
 from utils import info, if_exist, mkdir, remove, load_excel
 import random
 import time
+import fcntl
 
 class BOOMMacros():
     def __init__(self, ):
@@ -31,6 +32,21 @@ class BOOMMacros():
             "main",
             "scala",
             "config",
+            "BoomConfigs.scala"
+        )
+
+        self.macros["core-cfg-backup"] = os.path.join(
+            self.macros["chipyard-root"],
+            "vlsi",
+            "autoflow",
+            "chisel",
+            "config-mixins.scala"
+        )
+        self.macros["soc-cfg-backup"] = os.path.join(
+            self.macros["chipyard-root"],
+            "vlsi",
+            "autoflow",
+            "chisel",
             "BoomConfigs.scala"
         )
     
@@ -358,8 +374,12 @@ class %s(n: Int = 1, overrideIdOffset: Option[Int] = None) extends Config(
         return codes
 
     def write_core_cfg_impl(self, codes: str) -> NoReturn:
-        with open(self.macros["core-cfg"], 'a') as f:
+        with open(self.macros["core-cfg"], 'w') as f, open(self.macros['core-cfg-backup'], 'r') as f_backup:
+            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+            for line in f_backup:
+                f.write(line)
             f.writelines(codes)
+            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
 
     def generate_soc_cfg_impl(self, soc_name: str, core_name: str) -> NoReturn:
         codes = '''
@@ -373,8 +393,12 @@ class %s extends Config(
         return codes
 
     def write_soc_cfg_impl(self, codes: str) -> NoReturn:
-        with open(self.macros["soc-cfg"], 'a') as f:
+        with open(self.macros["soc-cfg"], 'w') as f, open(self.macros['soc-cfg-backup'], 'r') as f_backup:
+            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+            for line in f_backup:
+                f.write(line)
             f.writelines(codes)
+            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
 
 def parse_boom_design_space():
     pwd = os.path.dirname(os.path.abspath(__file__))
