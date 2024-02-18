@@ -31,7 +31,7 @@ WORKDIR /root
 # Install Chipyard and run ubuntu-req.sh to install necessary dependencies
 RUN git clone https://github.com/SuperVan-Young/chipyard.git && \
         cd chipyard && \
-        git checkout 1.10.0
+        git checkout docker
 
 RUN ./chipyard/.github/scripts/install-conda.sh
 
