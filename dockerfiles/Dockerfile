@@ -43,10 +43,10 @@ FROM base as base-with-tools
 SHELL ["/bin/bash", "-cl"]
 
 # Initialize repo
-RUN cd chipyard && \
-        export MAKEFLAGS=-"j $(nproc)" && \
-        conda activate base && \
-        ./build-setup.sh riscv-tools -s 6 -s 7 -s 8 -s 9
+# RUN cd chipyard && \
+#         export MAKEFLAGS=-"j $(nproc)" && \
+#         conda activate base && \
+#         ./build-setup.sh riscv-tools -s 6 -s 7 -s 8 -s 9
 
 SHELL ["/opt/conda/bin/conda", "run", "-n", "chipyard", "/bin/bash", "-cl"]
 
