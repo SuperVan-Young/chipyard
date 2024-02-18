@@ -167,6 +167,9 @@ else
     # Use the fast solver by default
     "${DRY_RUN_ECHO[@]}" $SUDO "$CONDA_EXE" config --system --set solver libmamba
 
+    # clean caches to avoid bugs
+    $SUDO "$CONDA_EXE" clean --all
+
     # conda-lock is a special case and must always be installed into the base environment
     $SUDO "$CONDA_EXE" install $DRY_RUN_OPTION -y -n base conda-lock=1.4
 
