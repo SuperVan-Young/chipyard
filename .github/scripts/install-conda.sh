@@ -142,8 +142,8 @@ else
         echo "::INFO:: installing conda to '$CONDA_INSTALL_PREFIX'"
     fi
     # -b for non-interactive install
-    $SUDO bash ./install_conda.sh -b -p "$CONDA_INSTALL_PREFIX" $conda_install_extra
-    rm ./install_conda.sh
+    $SUDO bash ./chipyard/install_conda.sh -b -p "$CONDA_INSTALL_PREFIX" $conda_install_extra
+    rm ./chipyard/install_conda.sh
 
     # see https://conda-forge.org/docs/user/tipsandtricks.html#multiple-channels
     # for more information on flexible channel_priority
