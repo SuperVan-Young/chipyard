@@ -1,6 +1,7 @@
 [submodule "rocket-chip"]
 	path = generators/rocket-chip
-	url = https://github.com/chipsalliance/rocket-chip.git
+	url = https://github.com/SuperVan-Young/rocket-chip.git
+	branch = lab2-handout
 [submodule "testchipip"]
 	path = generators/testchipip
 	url = https://github.com/ucb-bar/testchipip.git
