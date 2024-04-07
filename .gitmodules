@@ -1,6 +1,7 @@
 [submodule "rocket-chip"]
 	path = generators/rocket-chip
-	url = https://github.com/chipsalliance/rocket-chip.git
+	url = https://github.com/SuperVan-Young/rocket-chip.git
+	branch = lab3-sp24
 [submodule "testchipip"]
 	path = generators/testchipip
 	url = https://github.com/ucb-bar/testchipip.git
@@ -78,7 +79,8 @@
 	url = https://github.com/ucb-bar/FFTGenerator.git
 [submodule "toolchains/riscv-tools/riscv-tests"]
 	path = toolchains/riscv-tools/riscv-tests
-	url = https://github.com/riscv-software-src/riscv-tests.git
+	url = https://github.com/SuperVan-Young/riscv-tests.git
+	branch = lab3-sp24
 [submodule "toolchains/riscv-tools/riscv-pk"]
 	path = toolchains/riscv-tools/riscv-pk
 	url = https://github.com/riscv-software-src/riscv-pk.git
