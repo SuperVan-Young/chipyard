@@ -6,6 +6,8 @@ SRC_DIR := .
 
 bmarks = \
 	transpose \
+	stride-1 \
+	stride-4 \
 
 CC := riscv64-unknown-elf-gcc
 CFLAGS := -O2 -std=gnu11 -Wall -specs=htif_nano.specs
@@ -24,7 +26,7 @@ $(foreach bmark,$(bmarks),$(eval $(call compile_template,$(bmark))))
 
 bmarks_riscv_bin  = $(addsuffix .riscv,  $(bmarks))
 
-all: bmarks_riscv_bin
+all: $(bmarks_riscv_bin)
 
 .PHONY: clean
 clean:

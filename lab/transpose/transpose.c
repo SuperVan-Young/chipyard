@@ -4,7 +4,7 @@
 
 /* Only once your code passes the self-check, remove VERIFY to skip
    verification for shorter simulations */
-#define VERIFY
+// #define VERIFY
 
 void __attribute__ ((noinline)) transpose(mat_nxm_t dst, const mat_mxn_t src)
 {
@@ -18,8 +18,6 @@ void __attribute__ ((noinline)) transpose(mat_nxm_t dst, const mat_mxn_t src)
 
 int main(void)
 {
-    size_t i, j;
-
     /* Enable performance counters */
     hpm_init();
 
@@ -29,6 +27,8 @@ int main(void)
     hpm_print();
 
 #ifdef VERIFY
+    size_t i, j;
+
     /* Verify result */
     for (i = 0; i < MAT_M; i++) {
         for  (j = 0; j < MAT_N; j++) {
