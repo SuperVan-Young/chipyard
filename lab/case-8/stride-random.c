@@ -13,6 +13,7 @@ void __attribute__ ((noinline)) stride(vec_t vec)
     // initialize arr_beg
     for (i = 0; i < NUM_VEC; i++) {
         arr_beg[i] = LEN_VEC - 1;
+        arr_idx[i] = LEN_VEC - 1;
     }
     
     // for each vector, access every block with cache line size
@@ -26,11 +27,11 @@ void __attribute__ ((noinline)) stride(vec_t vec)
             // operate on the cache line for a while
             int num_op = arr_num_op[j];
             for (k = 0; k < num_op; k++) {
-                vec[j][idx+k] = vec[j][idx+k] + 1;
+                vec[j][idx-k] = vec[j][idx-k] + 1;
             }
 
             // update idx
-            idx -= (randn() % 16) * INT_PER_CACHE_LINE;
+            idx -= (rand() % 16) * INT_PER_CACHE_LINE;
             if (idx < 0) {
                 arr_beg[j] -= INT_PER_CACHE_LINE;
                 arr_idx[j] = arr_beg[j];
@@ -43,6 +44,8 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
 int main(void)
 {
+    srand(42);
+
     /* Enable performance counters */
     hpm_init();
 

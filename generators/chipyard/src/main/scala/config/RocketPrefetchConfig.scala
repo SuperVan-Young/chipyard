@@ -43,13 +43,20 @@ class CS152RocketNoPrefetchConfig extends Config(
   new freechips.rocketchip.subsystem.WithNBanks(2) ++ // increase number of broadcast hub trackers
   new CS152AbstractConfig)
 
-// Evaluation CONFIG with prefetching enabled
-class CS152RocketPrefetchConfig extends Config(
-  new WithL1Prefetcher ++               // enable L1 prefetcher
+// Evaluation CONFIG with naive prefetching enabled
+class CS152RocketNaivePrefetchConfig extends Config(
+  new WithNaiveL1Prefetcher ++               // enable L1 prefetcher
   new CS152RocketNoPrefetchConfig)
 
-// TODO: Replace the module instantiation with your own
-// e.g., CustomL1Prefetcher, ModelL1Prefetcher
-class WithL1Prefetcher extends Config((site, here, up) => {
+// Evaluation CONFIG with custom prefetching enabled
+class CS152RocketCustomPrefetchConfig extends Config(
+  new WithCustomL1Prefetcher ++               // enable L1 prefetcher
+  new CS152RocketNoPrefetchConfig)
+
+class WithNaiveL1Prefetcher extends Config((site, here, up) => {
   case BuildL1Prefetcher => Some((p: Parameters) => Module(new ExampleL1Prefetcher()(p)))
+})
+
+class WithCustomL1Prefetcher extends Config((site, here, up) => {
+  case BuildL1Prefetcher => Some((p: Parameters) => Module(new CustomL1Prefetcher()(p)))
 })

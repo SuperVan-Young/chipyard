@@ -25,7 +25,7 @@ void __attribute__ ((noinline)) stride(vec_t vec)
             }
 
             // update idx
-            idx += (randn() % 4) * INT_PER_CACHE_LINE;
+            idx += (rand() % 4) * INT_PER_CACHE_LINE;
 
             if (idx >= LEN_VEC) {
                 arr_beg[j] += INT_PER_CACHE_LINE;
@@ -39,6 +39,8 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
 int main(void)
 {
+    srand(42);
+
     /* Enable performance counters */
     hpm_init();
 

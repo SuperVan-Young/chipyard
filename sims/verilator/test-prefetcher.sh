@@ -7,10 +7,8 @@ CHIPYARD_ROOT=$(cd "$(dirname "$0")/../../" && pwd)
 source ${CHIPYARD_ROOT}/env.sh
 
 # make sure the simulator is built
-if [ ! -f "${CHIPYARD_ROOT}/sims/verilator/simulator-chipyard.harness-${CONFIG}" ]; then
-    echo "Building simulator for ${CONFIG}"
-    make CONFIG=${CONFIG}
-fi
+echo "Building simulator for ${CONFIG}"
+make CONFIG=${CONFIG}
 
 # run simulation in parallel
 bmarks=(
