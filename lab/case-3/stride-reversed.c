@@ -31,7 +31,7 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
             // update idx
             idx -= arr_stride[j] * INT_PER_CACHE_LINE;
-            if (idx < 0) {
+            if (idx > LEN_VEC) {
                 arr_beg[j] -= INT_PER_CACHE_LINE;
                 arr_idx[j] = arr_beg[j];
             } else {
