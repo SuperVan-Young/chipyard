@@ -1,6 +1,6 @@
 /* 
-    Traverse four vectors with different strides,
-    but, in reversed order.
+    Sequentially traverse the vector with a stride of 1 cache block.
+    This time it's more memory intensive!
  */
 
 #ifndef DATASET_H
@@ -13,22 +13,18 @@
 // cache line is 64 Bytes, int is 4 Bytes
 #define INT_PER_CACHE_LINE 16
 
-// number of vectors
-#define NUM_VEC 4
-
-// length of every vector
-#define LEN_VEC 1024
-
-typedef intptr_t vec_t[NUM_VEC][LEN_VEC];
-
-/* Force test_vec to be allocated in .data */
-static vec_t test_vec = { { 1 } };
+// length of the vector
+#define LEN_VEC 4096
 
 // how many cache line in every iteration
-static size_t arr_stride[NUM_VEC] = {1, 3, 5, 7};
+#define STRIDE 1
 
 // number of incr operations on every cache line
-// This can vary between 1 ~ 16
-static size_t arr_num_op[NUM_VEC] = {1, 2, 4, 8};
+#define NUM_OP 4
+
+typedef intptr_t vec_t[LEN_VEC];
+
+/* Force test_vec to be allocated in .data */
+static vec_t test_vec = { 1 };
 
 #endif  /* DATASET_H */

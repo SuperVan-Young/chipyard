@@ -3,7 +3,7 @@
 #include "hpm.h"
 
 
-void __attribute__ ((noinline)) stride(vec_t vec)
+void __attribute__ ((noinline)) stride(vec_t vec_1, vec_t vec_2)
 {
     size_t i, j;
     size_t beg = 0;   // starting point of this vector traversal
@@ -14,7 +14,7 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
         // for current cache line, do some operations
         for (j = 0; j < NUM_OP; j++) {
-            vec[idx + j % INT_PER_CACHE_LINE] += 1;
+            vec_2[idx + j % INT_PER_CACHE_LINE] += vec_1[idx + j % INT_PER_CACHE_LINE];
         }
 
         // update idx 
@@ -32,7 +32,7 @@ int main(void)
     /* Enable performance counters */
     hpm_init();
 
-    stride(test_vec);
+    stride(src_vec, test_vec);
 
     /* Print performance counter data */
     hpm_print();
