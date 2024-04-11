@@ -13,7 +13,7 @@
 #define INT_PER_CACHE_LINE 16
 
 // length of the vector
-#define LEN_VEC 4096
+#define LEN_VEC 1024
 
 // how many cache line in every iteration
 #define STRIDE 1

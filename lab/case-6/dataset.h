@@ -14,13 +14,10 @@
 #define INT_PER_CACHE_LINE 16
 
 // length of the vector
-#define LEN_VEC 4096
+#define LEN_VEC 1024
 
 // how many cache line in every iteration
 #define STRIDE 1
-
-// number of incr operations on every cache line
-#define NUM_OP 4
 
 typedef intptr_t vec_t[LEN_VEC];
 

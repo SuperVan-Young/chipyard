@@ -16,7 +16,7 @@
 #define LEN_VEC 2048
 
 // how many cache line in every iteration
-#define STRIDE 1
+#define STRIDE 4
 
 // number of incr operations on every cache line
 #define NUM_OP 16

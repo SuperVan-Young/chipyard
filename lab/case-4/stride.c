@@ -7,23 +7,13 @@
 void __attribute__ ((noinline)) stride(vec_t vec)
 {
     size_t i, j;
-    size_t beg = 0;   // starting point of this vector traversal
-    size_t idx = 0;   // starting point of this block
     
     // for each vector, access every block with cache line size
-    for (i = 0; i < LEN_VEC; i += INT_PER_CACHE_LINE) {
+    for (i = 0; i < LEN_VEC; i += INT_PER_CACHE_LINE * (rand() % 16)) {
 
         // for current cache line, do some operations
         for (j = 0; j < NUM_OP; j++) {
-            vec[idx + j % INT_PER_CACHE_LINE] += 1;
-        }
-
-        // update idx 
-        size_t stride = rand() % 16;
-        idx += INT_PER_CACHE_LINE * stride;
-        if (idx >= LEN_VEC) {
-            beg += INT_PER_CACHE_LINE;
-            idx = beg;
+            vec[i + j % INT_PER_CACHE_LINE] += 1;
         }
 
     }
@@ -31,6 +21,8 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
 int main(void)
 {
+    srand(42);
+
     /* Enable performance counters */
     hpm_init();
 
