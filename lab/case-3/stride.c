@@ -5,6 +5,8 @@
 
 void __attribute__ ((noinline)) stride(vec_t vec)
 {
+    printf("%ld\n", sizeof(int));
+
     size_t i, j;
     
     // for each vector, access every block with cache line size
@@ -12,14 +14,14 @@ void __attribute__ ((noinline)) stride(vec_t vec)
 
         // for current cache line, do some operations
         for (j = 0; j < NUM_OP; j++) {
-            vec[i + j % INT_PER_CACHE_LINE] += 1;
+            vec[i + j % 4] += 1;
         }
 
         i += INT_PER_CACHE_LINE * STRIDE_1;
 
         // for current cache line, do some operations
         for (j = 0; j < NUM_OP; j++) {
-            vec[i + j % INT_PER_CACHE_LINE] += 1;
+            vec[i + j % 4] += 1;
         }
 
         i += INT_PER_CACHE_LINE * STRIDE_2;

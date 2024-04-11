@@ -12,7 +12,7 @@ void __attribute__ ((noinline)) stride(vec_t vec_1, vec_t vec_2)
 
         // for current cache line, do some operations
         for (j = 0; j < NUM_OP; j++) {
-            vec_2[i + j % INT_PER_CACHE_LINE] += vec_1[i + j % INT_PER_CACHE_LINE];
+            vec_2[i + j % 4] += vec_1[i + j % 4];
         }
     }
 }

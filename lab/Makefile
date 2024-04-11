@@ -16,6 +16,7 @@ bmarks = \
 
 CC := riscv64-unknown-elf-gcc
 CFLAGS := -O2 -std=gnu11 -Wall -specs=htif_nano.specs
+RISCV_OBJDUMP := riscv64-unknown-elf-objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
 
 .PHONY: all
 
@@ -29,8 +30,12 @@ endef
 $(foreach bmark,$(bmarks),$(eval $(call compile_template,$(bmark))))
 
 bmarks_riscv_bin  = $(addsuffix .riscv,  $(bmarks))
+bmarks_riscv_dump = $(addsuffix .riscv.dump, $(bmarks))
 
-all: $(bmarks_riscv_bin)
+$(bmarks_riscv_dump): %.riscv.dump: %.riscv
+	$(RISCV_OBJDUMP) $< > $@
+
+all: $(bmarks_riscv_dump)
 
 .PHONY: clean
 clean:
