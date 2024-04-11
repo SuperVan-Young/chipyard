@@ -5,13 +5,15 @@
 
 void __attribute__ ((noinline)) stride(vec_t vec)
 {
-    size_t i;
+    size_t i, j;
     
     // for each vector, access every block with cache line size
     for (i = 0; i < LEN_VEC; i += INT_PER_CACHE_LINE * STRIDE) {
 
-        vec[i+1] = vec[i];
-        vec[i+3] = vec[i+2];
+        // for current cache line, do some operations
+        for (j = 0; j < NUM_OP; j++) {
+            vec[i + j % INT_PER_CACHE_LINE] += 1;
+        }
 
     }
 }

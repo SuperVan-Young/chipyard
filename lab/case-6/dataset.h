@@ -19,7 +19,10 @@
 // how many cache line in every iteration
 #define STRIDE 1
 
-typedef intptr_t vec_t[LEN_VEC];
+// number of incr operations on every cache line
+#define NUM_OP 4
+
+typedef int vec_t[LEN_VEC];
 
 /* Force test_vec to be allocated in .data */
 static vec_t test_vec = { 1 };
